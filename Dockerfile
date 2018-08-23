@@ -20,4 +20,8 @@ RUN set -e && \
     mv composer.phar /usr/local/bin/composer && \
     composer config -g repo.packagist composer https://packagist.phpcomposer.com && \
     composer create-project --prefer-dist laravel/laravel laravel && \
-    composer create-project --prefer-dist topthink/think tp5 
+    composer create-project --prefer-dist topthink/think tp5 && \
+    chown -R www-data tp5 && chgrp -R www-data tp5 && \
+    chmod -R 775 tp5 && \
+    chown -R www-data laravel && chgrp -R www-data laravel && \
+    chmod -R 775 laravel
