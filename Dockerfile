@@ -25,3 +25,12 @@ RUN set -e && \
     chmod -R 775 tp5 && \
     chown -R www-data laravel && chgrp -R www-data laravel && \
     chmod -R 775 laravel
+
+
+# install php extend
+RUN set -e && \
+    docker-php-source extract && \
+    docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd && \
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-enable pdo_mysql && \
+    docker-php-source delete
