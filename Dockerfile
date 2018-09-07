@@ -34,3 +34,15 @@ RUN set -e && \
     docker-php-ext-install pdo_mysql && \
     docker-php-ext-enable pdo_mysql && \
     docker-php-source delete
+
+# install gd
+RUN apt-get -y install libjpeg-dev libpng-dev libfreetype6-dev && \
+    docker-php-source extract \
+    && docker-php-ext-configure gd  --with-gd \
+    --with-freetype-dir \
+    --with-jpeg-dir \
+    --with-png-dir \
+    --with-zlib-dir \
+    && docker-php-ext-install gd \
+    && docker-php-ext-enable gd \
+    && docker-php-source delete
