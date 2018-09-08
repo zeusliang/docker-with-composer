@@ -3,13 +3,17 @@ FROM php:7.2.8-apache
 # add pkg sources
 COPY $PWD/sources.list /etc/apt/sources.list
 
+# config apache vhosts
+COPY mapp.conf /etc/apache2/sites-enabled/
+RUN mv /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.bk 
+
 # update and install git
 RUN set -e && \
     apt-get -y update && \
     apt-get -y install git && \
     apt-get -y install zip unzip
 
-
+# set php.ini
 COPY php.ini /usr/local/etc/php
 
 # load rewrite mod
