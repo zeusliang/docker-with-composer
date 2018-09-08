@@ -12,6 +12,8 @@ RUN set -e && \
 
 COPY php.ini /usr/local/etc/php
 
+# load rewrite mod
+RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/sites-enable/rewrite.load
 
 # install composer and cunstome
 RUN set -e && \
@@ -21,10 +23,13 @@ RUN set -e && \
     composer config -g repo.packagist composer https://packagist.phpcomposer.com && \
     composer create-project --prefer-dist laravel/laravel laravel && \
     composer create-project --prefer-dist topthink/think tp5 && \
+    composer create-project --prefer-dist yiisoft/yii2-app-basic basic && \
     chown -R www-data tp5 && chgrp -R www-data tp5 && \
     chmod -R 775 tp5 && \
     chown -R www-data laravel && chgrp -R www-data laravel && \
-    chmod -R 775 laravel
+    chmod -R 775 laravel && \
+    chmown -R www-data basic && chgrp -R www-data basic && \
+    chmod -R 775 basic
 
 
 # install php extend
