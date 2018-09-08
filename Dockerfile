@@ -13,7 +13,7 @@ RUN set -e && \
 COPY php.ini /usr/local/etc/php
 
 # load rewrite mod
-RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/sites-enable/rewrite.load
+RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/
 
 # install composer and cunstome
 RUN set -e && \
@@ -28,7 +28,7 @@ RUN set -e && \
     chmod -R 775 tp5 && \
     chown -R www-data laravel && chgrp -R www-data laravel && \
     chmod -R 775 laravel && \
-    chmown -R www-data basic && chgrp -R www-data basic && \
+    chown -R www-data basic && chgrp -R www-data basic && \
     chmod -R 775 basic
 
 
