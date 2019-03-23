@@ -48,5 +48,4 @@ RUN apt-get update && apt-get install -y \
     curl -O  https://getcomposer.org/download/1.7.2/composer.phar && \
     mv composer.phar /usr/bin/composer && \
     chmod +x /usr/bin/composer && \
-    rm -rf memcached* && \
-    rm -rf redis*
+    rm -rf /var/www/html/memcached-3.0.4 /var/www/html/redis-4.1.1
