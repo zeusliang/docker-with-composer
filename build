@@ -1,0 +1,1 @@
+docker build -t php-env:1.0 ./
